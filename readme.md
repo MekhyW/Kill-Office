@@ -12,4 +12,4 @@
 - - [ ] Jump with fall gravity scale
 - - [ ] Coyote Time 
 - - [ ] Dash
-- 
+- - [ ] Jump height control
