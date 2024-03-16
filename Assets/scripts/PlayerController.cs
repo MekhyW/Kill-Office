@@ -11,14 +11,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velPower = 2.0f;
     [SerializeField] private float deccel = 2.0f;
     [SerializeField] private float accel = 2.0f;
-    [SerializeField] private float speed = 2.0f;
-    [SerializeField] private float coyoteTime = 2.0f;
-    [SerializeField] private float coyoteTimeCounter = 2.0f;
+    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float coyoteTimeCounter;
+    [SerializeField] private float jumpForce = 8.0f;
     private bool isGrounded;
     private Rigidbody2D rb;
     private InputAction movement;
     private SpriteRenderer spriteRenderer;
     private bool facingRight;
+    private Animator anim;
 
     public PlayerInputActions playerControls;
     // Start is called before the first frame update
@@ -43,26 +45,54 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (movement.ReadValue<float>() > 0)
-        {
-            spriteRenderer.flipX = false;
-            facingRight = true;
+        float movementValue = movement.ReadValue<float>();
+        if (movementValue != 0){
+            anim.SetBool("isRunning", true);
+            if (movementValue > 0)
+            {
+                spriteRenderer.flipX = false;
+                facingRight = true;
+            }
+            else if (movementValue < 0)
+            {
+                spriteRenderer.flipX = true;
+                facingRight = false;
+            }
         }
-        else if (movement.ReadValue<float>() < 0)
-        {
-            spriteRenderer.flipX = true;
-            facingRight = false;
+        else{
+            anim.SetBool("isRunning", false);
         }
 
     }
 
-    void OnJump(){
-        Debug.Log("JUMP");
+    void OnJump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 
     public void FixedUpdate()
