@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
-        if (isGrounded)
+        if (coyoteTimeCounter > 0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            anim.SetBool("grounded", true);
         }
     }
 
@@ -92,6 +93,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            anim.SetBool("grounded", false);
         }
     }
 
@@ -117,11 +119,17 @@ public class PlayerController : MonoBehaviour
         if (rb.velocity.y < 0)
         {
             rb.gravityScale = gravityScale * fallGravityMultiplier;
+            anim.SetBool("goingUp", false);
         }
         else
         {
             rb.gravityScale = gravityScale;
+            anim.SetBool("goingUp", true);
         }
 
+    }
+    public void OnReset(){
+        Debug.Log("RESET");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("industrial_level");
     }
 }
