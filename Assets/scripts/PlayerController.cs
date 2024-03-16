@@ -15,9 +15,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] private float coyoteTimeCounter;
     [SerializeField] private float jumpForce = 8.0f;
+    [SerializeField] private float jumpCutMultiplier = 0.5f;
     private bool isGrounded;
     private Rigidbody2D rb;
-    private InputAction movement;
+    private InputAction movement,jump;
     private SpriteRenderer spriteRenderer;
     private bool facingRight;
     private Animator anim;
@@ -34,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         movement = playerControls.Player.Move;
         movement.Enable();
+        jump = playerControls.Player.Jump;
+        jump.Enable();
     }
 
     private void OnDisable()
@@ -67,6 +70,10 @@ public class PlayerController : MonoBehaviour
         }
         else{
             anim.SetBool("isRunning", false);
+        }
+
+        if (!isGrounded && jump.ReadValue<float>()==0 && rb.velocity.y >0){ // jump while not holding button
+            rb.AddForce(Vector2.down * rb.velocity.y * (1-jumpCutMultiplier),ForceMode2D.Impulse);
         }
 
     }
@@ -132,4 +139,6 @@ public class PlayerController : MonoBehaviour
         Debug.Log("RESET");
         UnityEngine.SceneManagement.SceneManager.LoadScene("industrial_level");
     }
+
+    
 }

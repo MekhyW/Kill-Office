@@ -7,12 +7,15 @@
 
 ## ToDo
 - [ ] Character Controller
-- - [ ] Movement with forces
-- - [ ] Friction
-- - [ ] Jump with fall gravity scale
-- - [ ] Coyote Time 
+- - [X] Movement with forces
+- - [X] Jump with fall gravity scale
+- - [X] Coyote Time 
 - - [ ] Dash
-- - [ ] Jump height control
+- - [X] Jump height control
+- [ ] Character Animations
+- - [X] Idle
+- - [X] Run
+- - [ ] Jump
 
 ## Assets
 - [Free 3 Cyberpunk Characters Pixel Art](https://craftpix.net/freebies/free-3-cyberpunk-characters-pixel-art/)
