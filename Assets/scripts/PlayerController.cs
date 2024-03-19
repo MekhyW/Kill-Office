@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
 {
 
@@ -18,10 +19,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpCutMultiplier = 0.5f;
     private bool isGrounded;
     private Rigidbody2D rb;
-    private InputAction movement,jump;
+    private InputAction movement, jump;
     private SpriteRenderer spriteRenderer;
     private bool facingRight;
     private Animator anim;
+    private AudioSource audioSource;
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
+    private float dashingPower = 24f;
+
 
     public PlayerInputActions playerControls;
     // Start is called before the first frame update
@@ -37,6 +45,7 @@ public class PlayerController : MonoBehaviour
         movement.Enable();
         jump = playerControls.Player.Jump;
         jump.Enable();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDisable()
@@ -54,8 +63,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (isDashing)
+        {
+            return;
+        }
+
         float movementValue = movement.ReadValue<float>();
-        if (movementValue != 0){
+        if (movementValue != 0)
+        {
             anim.SetBool("isRunning", true);
             if (movementValue > 0)
             {
@@ -68,12 +84,14 @@ public class PlayerController : MonoBehaviour
                 facingRight = false;
             }
         }
-        else{
+        else
+        {
             anim.SetBool("isRunning", false);
         }
 
-        if (!isGrounded && jump.ReadValue<float>()==0 && rb.velocity.y >0){ // jump while not holding button
-            rb.AddForce(Vector2.down * rb.velocity.y * (1-jumpCutMultiplier),ForceMode2D.Impulse);
+        if (!isGrounded && jump.ReadValue<float>() == 0 && rb.velocity.y > 0)
+        { // jump while not holding button
+            rb.AddForce(Vector2.down * rb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
         }
 
     }
@@ -135,10 +153,34 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    public void OnReset(){
+    public void OnReset()
+    {
         Debug.Log("RESET");
         UnityEngine.SceneManagement.SceneManager.LoadScene("industrial_level");
     }
 
-    
+    public void OnDash()
+    {
+        if (canDash)
+        {
+            StartCoroutine(Dash());
+        }
+    }
+
+    public IEnumerator Dash()
+    {
+        Debug.Log("DASH");
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower,0f);
+        yield return new WaitForSeconds(dashingTime);
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+
+
 }

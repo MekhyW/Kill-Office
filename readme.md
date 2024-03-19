@@ -16,7 +16,13 @@
 - - [X] Idle
 - - [X] Run
 - - [ ] Jump
+- [ ] Levels
+- [ ] Sound 
+- - [ ] SFX
+- - [ ] Music 
 
 ## Assets
 - [Free 3 Cyberpunk Characters Pixel Art](https://craftpix.net/freebies/free-3-cyberpunk-characters-pixel-art/)
 - [Free Industrial Zone Tileset Pixel Art](https://craftpix.net/freebies/free-industrial-zone-tileset-pixel-art/)
+- [Free Scrolling City Backgrounds Pixel Art](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/)
+- [Free Extra Animations for Cyberpunk Characters](https://craftpix.net/freebies/free-extra-animations-for-cyberpunk-characters/)
