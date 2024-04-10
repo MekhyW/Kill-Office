@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float deccel = 2.0f;
     [SerializeField] private float accel = 2.0f;
     [SerializeField] private float speed = 5.0f;
-    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float coyoteTimeCounter;
     [SerializeField] private float jumpForce = 8.0f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
