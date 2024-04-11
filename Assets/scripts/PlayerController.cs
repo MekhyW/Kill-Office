@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float coyoteTimeCounter;
     [SerializeField] private float jumpForce = 8.0f;
+    [SerializeField] private float wallJumpBounce = 2.0f;
     [SerializeField] private float jumpCutMultiplier = 0.5f;
     private bool isGrounded;
     private Rigidbody2D rb;
@@ -29,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private float dashingTime = 0.2f;
     private float dashingCooldown = 1f;
     private float dashingPower = 24f;
+    private bool touchingWall = false;
 
 
     public PlayerInputActions playerControls;
@@ -102,6 +104,18 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+        else if (touchingWall){
+            rb.velocity= new Vector2(0f,0f);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (facingRight){
+                rb.AddForce(Vector2.left * wallJumpBounce, ForceMode2D.Impulse);
+                Debug.Log("WJRight");
+            }
+            else {
+                rb.AddForce(Vector2.right * wallJumpBounce, ForceMode2D.Impulse);
+                Debug.Log("WJLeft");
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -111,6 +125,10 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             anim.SetBool("grounded", true);
         }
+        if (other.gameObject.CompareTag("Walls"))
+        {
+            touchingWall = true;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -119,6 +137,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
             anim.SetBool("grounded", false);
+        }
+        if (other.gameObject.CompareTag("Walls"))
+        {
+            touchingWall = false;
         }
     }
 
@@ -174,7 +196,7 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashingPower,0f);
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;
         isDashing = false;
