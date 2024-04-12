@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float coyoteTimeCounter;
     [SerializeField] private float jumpForce = 8.0f;
-    [SerializeField] private float jumpCutMultiplier = 0.5f;
+    [SerializeField] private float jumpCutMultiplier = 0.9f;
     private float wallJumpBounce = 5.0f;
     private bool isGrounded;
-    private bool isWallJumping= false;
-    private float walljumpTime = 0.3f ;
+    private bool isWallJumping = false;
+    private float walljumpTime = 0.5f;
     private Rigidbody2D rb;
     private InputAction movement, jump;
     private SpriteRenderer spriteRenderer;
@@ -30,12 +30,16 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSource;
     private bool canDash = true;
     private bool isDashing;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
-    private float dashingPower = 30f;
+    private float dashingTime = 0.3f;
+    private float dashingCooldown = 0.3f;
+    private float dashingPower = 15f;
     private bool isWalled = false;
-    private bool isWallSliding = false;  
-    private float wallSlidingSpeed = 2f;   
+    private bool isWallSliding = false;
+    private float wallSlidingSpeed = 2f;
+    private Vector3 wallPosition;
+    private Vector3 groundPosition;
+
+    public GameObject groundChecker;
 
 
     public PlayerInputActions playerControls;
@@ -70,6 +74,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = groundChecker.GetComponent<groundCheck>().GroundCheck();
+        if (isGrounded){
+            anim.SetBool("grounded", true);
+        }
+        else{
+            anim.SetBool("grounded", false);
+        }
+
         if (transform.position.y < -8)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single); // reload current scene
@@ -111,6 +123,7 @@ public class PlayerController : MonoBehaviour
 
     void OnJump()
     {
+        Debug.Log(groundPosition.y);
         if (coyoteTimeCounter > 0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -118,11 +131,12 @@ public class PlayerController : MonoBehaviour
         else if (isWallSliding)
         {
             isWallJumping = true;
-            
-            spriteRenderer.flipX = ! spriteRenderer.flipX;
+
+            spriteRenderer.flipX = !spriteRenderer.flipX;
+            facingRight = !facingRight;
             rb.velocity = new Vector2(0f, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            if (facingRight)
+            if (wallPosition.x - transform.position.x < 0)
             {
                 rb.AddForce(Vector2.left * wallJumpBounce, ForceMode2D.Impulse);
                 Debug.Log("WJRight");
@@ -132,7 +146,7 @@ public class PlayerController : MonoBehaviour
                 rb.AddForce(Vector2.right * wallJumpBounce, ForceMode2D.Impulse);
                 Debug.Log("WJLeft");
             }
-            Invoke(nameof(stopWallJumping),walljumpTime);
+            Invoke(nameof(stopWallJumping), walljumpTime);
         }
     }
 
@@ -153,25 +167,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            anim.SetBool("grounded", true);
-        }
         if (other.gameObject.CompareTag("Walls"))
         {
             isWalled = true;
+            wallPosition = other.transform.position;
         }
     }
 
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-            anim.SetBool("grounded", false);
-        }
+
         if (other.gameObject.CompareTag("Walls"))
         {
             isWalled = false;
@@ -196,16 +202,17 @@ public class PlayerController : MonoBehaviour
         float movementFactor = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, velPower) * Mathf.Sign(speedDiff);
 
 
-        if (!isWallJumping){
+        if (!isWallJumping)
+        {
             rb.AddForce(movementFactor * Vector2.right);
         }
 
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && !isDashing)
         {
             rb.gravityScale = gravityScale * fallGravityMultiplier;
             anim.SetBool("goingUp", false);
         }
-        else
+        else if (!isDashing)
         {
             rb.gravityScale = gravityScale;
             anim.SetBool("goingUp", true);
@@ -231,22 +238,27 @@ public class PlayerController : MonoBehaviour
         Debug.Log("DASH");
         canDash = false;
         isDashing = true;
+        anim.SetBool("isDashing", true);
         float originalGravity = rb.gravityScale;
-        if (facingRight){
-            rb.velocity = (new Vector2(-1 * dashingPower, 0f));
+        rb.gravityScale = 0f;
+        if (facingRight)
+        {
+            rb.velocity = new Vector2(dashingPower, 0f);
         }
         else
         {
-            rb.velocity = (new Vector2(1 * dashingPower, 0f));
+            rb.velocity = new Vector2(-dashingPower, 0f);
         }
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;
         isDashing = false;
+        anim.SetBool("isDashing", false);
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
 
-    void stopWallJumping(){
+    void stopWallJumping()
+    {
         isWallJumping = false;
     }
 
