@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = groundChecker.GetComponent<groundCheck>().GroundCheck();
+        isGrounded = groundChecker.GetComponent<groundCheck>().GroundCheck();// grabs ground check bool function from child
         if (isGrounded){
             anim.SetBool("grounded", true);
         }
@@ -222,7 +222,7 @@ public class PlayerController : MonoBehaviour
     public void OnReset()
     {
         Debug.Log("RESET");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("industrial_level");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
     }
 
     public void OnDash()
