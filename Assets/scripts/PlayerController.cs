@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private bool isWalled = false;
     private bool isWallSliding = false;
     private float wallSlidingSpeed = 2f;
-    private Vector3 wallPosition;
+    private Vector3 contactPoint;
     private Vector3 groundPosition;
 
     public GameObject groundChecker;
@@ -133,10 +133,7 @@ public class PlayerController : MonoBehaviour
             facingRight = !facingRight;
             rb.velocity = new Vector2(0f, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            Debug.Log("teste: " + (wallPosition.x - transform.position.x));
-            Debug.Log("wallPosition: " + wallPosition.x);
-            Debug.Log("transform.position: " + transform.position.x);
-            if (wallPosition.x - transform.position.x <= 0)
+            if (contactPoint.x - transform.position.x > 0)
             {
                 rb.AddForce(Vector2.left * wallJumpBounce, ForceMode2D.Impulse);
                 Debug.Log("WJRight");
@@ -175,8 +172,9 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Walls"))
         {
             isWalled = true;
-            wallPosition = other.transform.position;
-            //Debug.Log("WallPosition: " + wallPosition);
+            // get the point of contact
+            contactPoint = other.contacts[0].point;
+            Debug.Log("ContactPoint: " + contactPoint);
         }
     }
 
