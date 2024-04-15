@@ -171,7 +171,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Walls"))
         {
+            CancelInvoke(nameof(stopWallJumping));
             isWalled = true;
+            isWallJumping = false;
             // get the point of contact
             contactPoint = other.contacts[0].point;
             Debug.Log("ContactPoint: " + contactPoint);
