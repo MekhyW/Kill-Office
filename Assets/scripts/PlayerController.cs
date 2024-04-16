@@ -9,16 +9,16 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private float gravityScale = 2.0f;
-    [SerializeField] private float fallGravityMultiplier = 2.0f;
+    [SerializeField] private float fallGravityMultiplier = 3.0f;
     [SerializeField] private float velPower = 2.0f;
     [SerializeField] private float deccel = 2.0f;
     [SerializeField] private float accel = 2.0f;
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 10.0f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float coyoteTimeCounter;
-    [SerializeField] private float jumpForce = 8.0f;
+    [SerializeField] private float jumpForce = 12.0f;
     [SerializeField] private float jumpCutMultiplier = 0.9f;
-    private float wallJumpBounce = 5.0f;
+    private float wallJumpBounce = 12.0f;
     private bool isGrounded;
     private bool isWallJumping = false;
     private float walljumpTime = 0.5f;
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private float wallSlidingSpeed = 2f;
     private Vector3 contactPoint;
     private Vector3 groundPosition;
+    private int cardCount = 0;
 
     public GameObject groundChecker;
 
@@ -207,7 +208,7 @@ public class PlayerController : MonoBehaviour
         float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? accel : deccel;
         float movementFactor = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, velPower) * Mathf.Sign(speedDiff);
 
-
+        // https://www.youtube.com/watch?v=KbtcEVCM7bw&list=PLdciXljwmrpFK5VV2qCiYt48E8IQzQko5&index=5
         if (!isWallJumping)
         {
             rb.AddForce(movementFactor * Vector2.right);
@@ -266,6 +267,10 @@ public class PlayerController : MonoBehaviour
     void stopWallJumping()
     {
         isWallJumping = false;
+    }
+
+    public void IncreaseCard(){
+        cardCount++;
     }
 
 }
