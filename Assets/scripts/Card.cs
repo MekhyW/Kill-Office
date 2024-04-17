@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+
+    public AudioClip sfx;
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        //audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -17,15 +21,5 @@ public class Card : MonoBehaviour
     }
 
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<PlayerController>().IncreaseCard();
-            this.gameObject.SetActive(false);
-        }
-
-
-    }
-
+    
 }

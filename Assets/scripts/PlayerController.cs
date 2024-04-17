@@ -13,10 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float velPower = 2.0f;
     [SerializeField] private float deccel = 2.0f;
     [SerializeField] private float accel = 2.0f;
-    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private float speed = 12.0f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private float coyoteTimeCounter;
-    [SerializeField] private float jumpForce = 12.0f;
+    [SerializeField] private float jumpForce = 16.0f;
     [SerializeField] private float jumpCutMultiplier = 0.9f;
     private float wallJumpBounce = 12.0f;
     private bool isGrounded;
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private int cardCount = 0;
 
     public GameObject groundChecker;
+    public AudioClip cardSfx;
 
 
     public PlayerInputActions playerControls;
@@ -269,8 +270,17 @@ public class PlayerController : MonoBehaviour
         isWallJumping = false;
     }
 
-    public void IncreaseCard(){
-        cardCount++;
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.CompareTag("Card")){
+            cardCount++;
+            other.gameObject.SetActive(false);
+            audioSource.PlayOneShot(cardSfx,0.7f);
+        }
+
+
     }
+
 
 }
