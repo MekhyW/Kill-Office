@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 contactPoint;
     private Vector3 groundPosition;
     private int cardCount = 0;
+    private bool isDead = false;
 
     public GameObject groundChecker;
     public AudioClip cardSfx;
@@ -76,6 +77,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead){
+            return;
+        }
+
         isGrounded = groundChecker.GetComponent<groundCheck>().GroundCheck();// grabs ground check bool function from child
         if (isGrounded){
             anim.SetBool("grounded", true);
@@ -126,6 +131,9 @@ public class PlayerController : MonoBehaviour
     void OnJump()
     {
         //Debug.Log(groundPosition.y);
+        if (isDead){
+            return;
+        }
 
         if (isWallSliding)
         {
@@ -194,6 +202,9 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (isDead){
+            return;
+        }
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
@@ -277,6 +288,12 @@ public class PlayerController : MonoBehaviour
             cardCount++;
             other.gameObject.SetActive(false);
             audioSource.PlayOneShot(cardSfx,0.7f);
+        }
+
+        if (other.gameObject.CompareTag("Spikes")){
+            Debug.Log("SPIKES");
+            anim.SetBool("isDead", true);
+            isDead = true;
         }
 
 
