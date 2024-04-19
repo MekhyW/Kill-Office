@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayerController : MonoBehaviour
@@ -41,8 +42,10 @@ public class PlayerController : MonoBehaviour
     private int cardCount = 0;
     private bool isDead = false;
 
+    public GameObject loseTextObject;
     public GameObject groundChecker;
     public AudioClip cardSfx;
+    public AudioClip gameOverSfx;
 
 
     public PlayerInputActions playerControls;
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
         jump = playerControls.Player.Jump;
         jump.Enable();
         audioSource = GetComponent<AudioSource>();
+        loseTextObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -77,7 +81,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead){
+        if (isDead){ 
             return;
         }
 
@@ -91,7 +95,8 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -8)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single); // reload current scene
+            isDead= true;
+            StartCoroutine(OnDeath());
         }
 
         if (isDashing)
@@ -294,7 +299,19 @@ public class PlayerController : MonoBehaviour
             Debug.Log("SPIKES");
             anim.SetBool("isDead", true);
             isDead = true;
+            StartCoroutine(OnDeath());
         }
+
+
+    }
+
+    public IEnumerator OnDeath(){
+        loseTextObject.SetActive(true);
+        audioSource.PlayOneShot(gameOverSfx,0.7f);
+        //play sfx
+        yield return new WaitForSeconds(2f);
+        OnReset();
+
 
 
     }
