@@ -8,6 +8,7 @@ TagManager:
   - Walls
   - Card
   - Spikes
+  - Bullet
   layers:
   - Default
   - TransparentFX

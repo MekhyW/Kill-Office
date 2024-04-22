@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     public GameObject groundChecker;
     public AudioClip cardSfx;
     public AudioClip gameOverSfx;
+    public AudioClip jumpSfx;
+    public AudioClip dashSfx;
 
 
     public PlayerInputActions playerControls;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         jump.Enable();
         audioSource = GetComponent<AudioSource>();
         loseTextObject.SetActive(false);
+        
     }
 
     private void OnDisable()
@@ -95,8 +98,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < -8)
         {
-            isDead= true;
-            StartCoroutine(OnDeath());
+            killPlayer();
         }
 
         if (isDashing)
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour
         float movementValue = movement.ReadValue<float>();
         if (movementValue != 0 && !isWallJumping)
         {
+            
             anim.SetBool("isRunning", true);
             if (movementValue > 0)
             {
@@ -143,6 +146,7 @@ public class PlayerController : MonoBehaviour
         if (isWallSliding)
         {
             isWallJumping = true;
+            audioSource.PlayOneShot(jumpSfx,0.7f);
 
             spriteRenderer.flipX = !spriteRenderer.flipX;
             facingRight = !facingRight;
@@ -164,6 +168,7 @@ public class PlayerController : MonoBehaviour
         else if (coyoteTimeCounter > 0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            audioSource.PlayOneShot(jumpSfx,0.7f);
         }
     }
 
@@ -253,6 +258,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canDash)
         {
+            audioSource.PlayOneShot(dashSfx,1f);
             StartCoroutine(Dash());
         }
     }
@@ -295,14 +301,23 @@ public class PlayerController : MonoBehaviour
             audioSource.PlayOneShot(cardSfx,0.7f);
         }
 
-        if (other.gameObject.CompareTag("Spikes")){
+        else if (other.gameObject.CompareTag("Spikes")){
             Debug.Log("SPIKES");
             anim.SetBool("isDead", true);
-            isDead = true;
-            StartCoroutine(OnDeath());
+            killPlayer();
         }
 
+        else if (other.gameObject.CompareTag("Bullet")){
+            Destroy(other.gameObject);
+            killPlayer();
+        }
 
+    }
+
+    public void killPlayer(){
+        isDead=true;
+        anim.SetBool("isDead", true);
+        StartCoroutine(OnDeath());
     }
 
     public IEnumerator OnDeath(){
@@ -311,8 +326,6 @@ public class PlayerController : MonoBehaviour
         //play sfx
         yield return new WaitForSeconds(2f);
         OnReset();
-
-
 
     }
 
