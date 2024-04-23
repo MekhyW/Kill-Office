@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip gameOverSfx;
     public AudioClip jumpSfx;
     public AudioClip dashSfx;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
 
 
     public PlayerInputActions playerControls;
@@ -79,6 +82,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
     }
 
     // Update is called once per frame
