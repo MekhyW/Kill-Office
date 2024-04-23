@@ -5,13 +5,14 @@ using UnityEngine;
 public class enemy_1 : MonoBehaviour
 {
 
+    private Animator animator;
     
     
     public GameObject bullet;
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +27,6 @@ public class enemy_1 : MonoBehaviour
 
 
     private void OnMouseDown() {
-        Debug.Log("MOUSEDOWN");
+        animator.SetBool("isDead",true);
     }
 }

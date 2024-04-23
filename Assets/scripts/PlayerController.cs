@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = new Vector2(100,100);
+    public GameObject manager;
 
 
     public PlayerInputActions playerControls;
@@ -256,7 +257,7 @@ public class PlayerController : MonoBehaviour
     public void OnReset()
     {
         Debug.Log("RESET");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        manager.GetComponent<Manager>().restartLevel();
     }
 
     public void OnDash()
