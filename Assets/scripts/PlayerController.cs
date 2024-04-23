@@ -9,16 +9,16 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private float gravityScale = 2.0f;
-    [SerializeField] private float fallGravityMultiplier = 3.0f;
-    [SerializeField] private float velPower = 2.0f;
-    [SerializeField] private float deccel = 2.0f;
-    [SerializeField] private float accel = 2.0f;
-    [SerializeField] private float speed = 12.0f;
-    [SerializeField] private float coyoteTime = 0.1f;
-    [SerializeField] private float coyoteTimeCounter;
-    [SerializeField] private float jumpForce = 16.0f;
-    [SerializeField] private float jumpCutMultiplier = 0.9f;
+    private float gravityScale = 2.0f;
+    private float fallGravityMultiplier = 3.0f;
+    private float velPower = 2.0f;
+    private float deccel = 2.0f;
+    private float accel = 2.0f;
+    private float speed = 10.0f;
+    private float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
+    private float jumpForce = 14.0f;
+    private float jumpCutMultiplier = 0.9f;
     private float wallJumpBounce = 12.0f;
     private bool isGrounded;
     private bool isWallJumping = false;
@@ -48,9 +48,10 @@ public class PlayerController : MonoBehaviour
     public AudioClip gameOverSfx;
     public AudioClip jumpSfx;
     public AudioClip dashSfx;
+    public AudioClip shotSfx;
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    public Vector2 hotSpot = new Vector2(100,100);
 
 
     public PlayerInputActions playerControls;
@@ -149,9 +150,9 @@ public class PlayerController : MonoBehaviour
 
         if (isWallSliding)
         {
+            CancelInvoke(nameof(stopWallJumping));
             isWallJumping = true;
             audioSource.PlayOneShot(jumpSfx,0.7f);
-
             spriteRenderer.flipX = !spriteRenderer.flipX;
             facingRight = !facingRight;
             rb.velocity = new Vector2(0f, 0f);
@@ -195,9 +196,9 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Walls"))
         {
-            CancelInvoke(nameof(stopWallJumping));
+            //CancelInvoke(nameof(stopWallJumping));
             isWalled = true;
-            isWallJumping = false;
+            //isWallJumping = false;
             // get the point of contact
             contactPoint = other.contacts[0].point;
             Debug.Log("ContactPoint: " + contactPoint);
@@ -330,6 +331,12 @@ public class PlayerController : MonoBehaviour
         //play sfx
         yield return new WaitForSeconds(2f);
         OnReset();
+
+    }
+
+
+    public void OnFire(){
+        audioSource.PlayOneShot(shotSfx,0.7f);
 
     }
 
