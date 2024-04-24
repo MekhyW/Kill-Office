@@ -3012,7 +3012,7 @@ GameObject:
   - component: {fileID: 906953307}
   m_Layer: 0
   m_Name: door
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3049,10 +3049,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.875, y: 1.25}
     newSize: {x: 0.875, y: 1.25}
     adaptiveTilingThreshold: 0.5
@@ -3156,7 +3156,7 @@ Transform:
   m_GameObject: {fileID: 906953306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120.25, y: 1.73, z: 0}
+  m_LocalPosition: {x: 120.25, y: 1.114, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16299,7 +16299,7 @@ Transform:
   m_GameObject: {fileID: 1618861780}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.06, y: 3.05, z: 0}
+  m_LocalPosition: {x: 102.71, y: 3.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17708,11 +17708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3742765883573699273, guid: b5efbbbf7a2627347ab8a012cf62ff5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.06
+      value: 102.71
       objectReference: {fileID: 0}
     - target: {fileID: 3742765883573699273, guid: b5efbbbf7a2627347ab8a012cf62ff5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.05
+      value: 3.83
       objectReference: {fileID: 0}
     - target: {fileID: 3742765883573699273, guid: b5efbbbf7a2627347ab8a012cf62ff5c, type: 3}
       propertyPath: m_LocalPosition.z

@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isWallJumping = false;
     private float walljumpTime = 0.5f;
     private Rigidbody2D rb;
-    private InputAction movement, jump;
+    private InputAction movement, jump,enterDoor;
     private SpriteRenderer spriteRenderer;
     private bool facingRight = true;
     private Animator anim;
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 groundPosition;
     private int cardCount = 0;
     private bool isDead = false;
+    private bool enteringDoor = false;
 
     public GameObject loseTextObject;
     public GameObject groundChecker;
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         movement.Disable();
+        jump.Disable();
     }
 
     void Start()
@@ -148,7 +150,7 @@ public class PlayerController : MonoBehaviour
     void OnJump()
     {
         //Debug.Log(groundPosition.y);
-        if (isDead)
+        if (isDead || enteringDoor)
         {
             return;
         }
@@ -222,7 +224,7 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (isDead)
+        if (isDead || enteringDoor)
         {
             return;
         }
@@ -326,7 +328,23 @@ public class PlayerController : MonoBehaviour
             killPlayer();
         }
 
+        else if (other.gameObject.CompareTag("Door")){
+            //play door sfx
+            Debug.Log("ENTER DOOR");
+            rb.velocity=new Vector2(0f,0f);
+            transform.position = other.gameObject.transform.position;
+            enteringDoor = true;
+            other.gameObject.GetComponent<Animator>().SetBool("doorOpening",true);
+            anim.SetBool("isEnteringDoor",true);
+        }
+
     }
+
+    public void loadNextLevel(){
+        Debug.Log("LOAD NEXT LEVEL"); // to do
+    }
+
+    
 
     public void killPlayer()
     {
