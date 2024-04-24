@@ -20,9 +20,15 @@ public class Manager : MonoBehaviour
     }
 
     public void restartLevel(){
-        if (player.gameObject.transform.position.x >= checkpoints[0].x){
-            Debug.Log("CHECKPOINT RESET");
+        Vector2 respawnPoint = new Vector2(0f,0f);
+        for (int i=0;i<checkpoints.Length;i++){
+            if (player.gameObject.transform.position.x>=checkpoints[i].x){
+                respawnPoint = checkpoints[i];
+            }
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        player.transform.position = new Vector3(respawnPoint.x,respawnPoint.y,0);
+        player.gameObject.GetComponent<PlayerController>().revive();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        
     }
 }

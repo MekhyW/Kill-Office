@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoints:
+  - {x: -25, y: 0}
   - {x: 40, y: 2}
   player: {fileID: 1618861780}
 --- !u!4 &9232553

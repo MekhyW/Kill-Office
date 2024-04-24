@@ -341,5 +341,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void revive(){
+        loseTextObject.SetActive(false);
+        isDead=false;
+        anim.SetBool("isDead",false);
+    }
+
 
 }
