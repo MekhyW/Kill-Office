@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip shotSfx;
     public Texture2D cursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = new Vector2(100,100);
+    public Vector2 hotSpot = new Vector2(100, 100);
     public GameObject manager;
 
 
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
         jump.Enable();
         audioSource = GetComponent<AudioSource>();
         loseTextObject.SetActive(false);
-        
+
     }
 
     private void OnDisable()
@@ -90,15 +90,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead){ 
+        if (isDead)
+        {
             return;
         }
 
         isGrounded = groundChecker.GetComponent<groundCheck>().GroundCheck();// grabs ground check bool function from child
-        if (isGrounded){
+        if (isGrounded)
+        {
             anim.SetBool("grounded", true);
         }
-        else{
+        else
+        {
             anim.SetBool("grounded", false);
         }
 
@@ -115,7 +118,7 @@ public class PlayerController : MonoBehaviour
         float movementValue = movement.ReadValue<float>();
         if (movementValue != 0 && !isWallJumping)
         {
-            
+
             anim.SetBool("isRunning", true);
             if (movementValue > 0)
             {
@@ -145,7 +148,8 @@ public class PlayerController : MonoBehaviour
     void OnJump()
     {
         //Debug.Log(groundPosition.y);
-        if (isDead){
+        if (isDead)
+        {
             return;
         }
 
@@ -153,7 +157,7 @@ public class PlayerController : MonoBehaviour
         {
             CancelInvoke(nameof(stopWallJumping));
             isWallJumping = true;
-            audioSource.PlayOneShot(jumpSfx,0.7f);
+            audioSource.PlayOneShot(jumpSfx, 0.7f);
             spriteRenderer.flipX = !spriteRenderer.flipX;
             facingRight = !facingRight;
             rb.velocity = new Vector2(0f, 0f);
@@ -174,7 +178,7 @@ public class PlayerController : MonoBehaviour
         else if (coyoteTimeCounter > 0)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            audioSource.PlayOneShot(jumpSfx,0.7f);
+            audioSource.PlayOneShot(jumpSfx, 0.7f);
         }
     }
 
@@ -218,7 +222,8 @@ public class PlayerController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (isDead){
+        if (isDead)
+        {
             return;
         }
         if (isGrounded)
@@ -264,7 +269,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canDash)
         {
-            audioSource.PlayOneShot(dashSfx,1f);
+            audioSource.PlayOneShot(dashSfx, 1f);
             StartCoroutine(Dash());
         }
     }
@@ -301,34 +306,42 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Card")){
+        if (other.gameObject.CompareTag("Card"))
+        {
             cardCount++;
             other.gameObject.SetActive(false);
-            audioSource.PlayOneShot(cardSfx,0.7f);
+            audioSource.PlayOneShot(cardSfx, 0.7f);
         }
 
-        else if (other.gameObject.CompareTag("Spikes")){
+        else if (other.gameObject.CompareTag("Spikes"))
+        {
             Debug.Log("SPIKES");
             anim.SetBool("isDead", true);
             killPlayer();
         }
 
-        else if (other.gameObject.CompareTag("Bullet")){
+        else if (other.gameObject.CompareTag("Bullet"))
+        {
             Destroy(other.gameObject);
             killPlayer();
         }
 
     }
 
-    public void killPlayer(){
-        isDead=true;
-        anim.SetBool("isDead", true);
-        StartCoroutine(OnDeath());
+    public void killPlayer()
+    {
+        if (!isDead)
+        {
+            isDead = true;
+            anim.SetBool("isDead", true);
+            StartCoroutine(OnDeath());
+        }
     }
 
-    public IEnumerator OnDeath(){
+    public IEnumerator OnDeath()
+    {
         loseTextObject.SetActive(true);
-        audioSource.PlayOneShot(gameOverSfx,0.7f);
+        audioSource.PlayOneShot(gameOverSfx, 0.7f);
         //play sfx
         yield return new WaitForSeconds(2f);
         OnReset();
@@ -336,15 +349,17 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void OnFire(){
-        audioSource.PlayOneShot(shotSfx,0.7f);
+    public void OnFire()
+    {
+        audioSource.PlayOneShot(shotSfx, 0.7f);
 
     }
 
-    public void revive(){
+    public void revive()
+    {
         loseTextObject.SetActive(false);
-        isDead=false;
-        anim.SetBool("isDead",false);
+        isDead = false;
+        anim.SetBool("isDead", false);
     }
 
 

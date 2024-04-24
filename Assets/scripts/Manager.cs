@@ -6,27 +6,31 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     [SerializeField] private Vector2[] checkpoints;  
+    private Vector2 currentCheckpoint;
+    private int checkpointIndex;
     public  GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        checkpointIndex = 0;
+        currentCheckpoint = checkpoints[checkpointIndex];
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i=checkpointIndex;i<checkpoints.Length;i++){
+            if (player.gameObject.transform.position.x>=checkpoints[i].x){
+                currentCheckpoint = checkpoints[i];
+                checkpointIndex++;
+            }
+        }
     }
 
     public void restartLevel(){
-        Vector2 respawnPoint = new Vector2(0f,0f);
-        for (int i=0;i<checkpoints.Length;i++){
-            if (player.gameObject.transform.position.x>=checkpoints[i].x){
-                respawnPoint = checkpoints[i];
-            }
-        }
-        player.transform.position = new Vector3(respawnPoint.x,respawnPoint.y,0);
+
+        
+        player.transform.position = new Vector3(currentCheckpoint.x,currentCheckpoint.y,0);
         player.gameObject.GetComponent<PlayerController>().revive();
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         
