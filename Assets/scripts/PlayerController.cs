@@ -54,8 +54,6 @@ public class PlayerController : MonoBehaviour
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = new Vector2(100, 100);
     public GameObject manager;
-
-
     public PlayerInputActions playerControls;
     // Start is called before the first frame update
 
@@ -341,7 +339,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void loadNextLevel(){
-        Debug.Log("LOAD NEXT LEVEL"); // to do
+        Debug.Log("LOAD NEXT LEVEL");// to do
+        SceneManager.LoadScene(manager.GetComponent<Manager>().getNextLevel());
     }
 
     

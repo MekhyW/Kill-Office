@@ -8,6 +8,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private Vector2[] checkpoints;  
     private Vector2 currentCheckpoint;
     private int checkpointIndex;
+    [SerializeField] private string next_level;
     public  GameObject player;
     // Start is called before the first frame update
     void Start()
@@ -34,5 +35,10 @@ public class Manager : MonoBehaviour
         player.gameObject.GetComponent<PlayerController>().revive();
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         
+    }
+
+    public string getNextLevel()
+    {
+        return next_level;
     }
 }
