@@ -368,7 +368,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire()
     {
-        audioSource.PlayOneShot(shotSfx, 0.7f);
+        audioSource.PlayOneShot(shotSfx, 0.4f);
 
     }
 

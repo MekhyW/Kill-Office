@@ -10,11 +10,14 @@ public class Manager : MonoBehaviour
     private int checkpointIndex;
     [SerializeField] private string next_level;
     public  GameObject player;
+
+
     // Start is called before the first frame update
     void Start()
     {
         checkpointIndex = 0;
         currentCheckpoint = checkpoints[checkpointIndex];
+        
     }
 
     // Update is called once per frame

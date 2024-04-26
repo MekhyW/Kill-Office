@@ -5,7 +5,7 @@ using UnityEngine;
 public class bullet : MonoBehaviour
 {
 
-    public float speed = 2f;
+    private float speed = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +29,9 @@ public class bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         this.gameObject.SetActive(false);
+    }
+
+    public void setSpeed(float value){
+        speed = value;
     }
 }
