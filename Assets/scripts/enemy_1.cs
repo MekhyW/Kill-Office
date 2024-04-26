@@ -13,6 +13,7 @@ public class enemy_1 : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        shoot();
     }
 
     // Update is called once per frame
@@ -24,6 +25,14 @@ public class enemy_1 : MonoBehaviour
     public void shoot(){
         my_bullet = Instantiate(bullet, transform.position - new Vector3(0.5f,-0.7f,0f), Quaternion.identity);
         my_bullet.gameObject.GetComponent<bullet>().setSpeed(-2f * transform.localScale.x);
+        animator.SetBool("shoot",false);
+        StartCoroutine(delayShoot());
+    }
+
+    public IEnumerator delayShoot(){
+
+        yield return new WaitForSeconds(2f);
+        animator.SetBool("shoot",true);
     }
 
 

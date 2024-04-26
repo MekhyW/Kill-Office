@@ -27,8 +27,9 @@ public class bullet : MonoBehaviour
 
     public IEnumerator destroy()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(8f/Mathf.Abs(speed));
         this.gameObject.SetActive(false);
+        Destroy(this);
     }
 
     public void setSpeed(float value){
