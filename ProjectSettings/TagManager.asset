@@ -10,6 +10,8 @@ TagManager:
   - Spikes
   - Bullet
   - Door
+  - EnemyWaypointA
+  - EnemyWaypointB
   layers:
   - Default
   - TransparentFX
