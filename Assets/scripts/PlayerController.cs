@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 hotSpot = new Vector2(100, 100);
     public GameObject manager;
     public PlayerInputActions playerControls;
+    private float originalGravity;
     // Start is called before the first frame update
 
     private void Awake()
@@ -207,6 +208,12 @@ public class PlayerController : MonoBehaviour
             // get the point of contact
             contactPoint = other.contacts[0].point;
             Debug.Log("ContactPoint: " + contactPoint);
+            if (isDashing)
+            {
+                // cancel invoke to stop dashing
+                CancelInvoke(nameof(stopDashing));
+                stopDashing();
+            }
         }
     }
 
@@ -267,20 +274,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash()
     {
-        if (canDash)
+        if (canDash || !isDead)
         {
             audioSource.PlayOneShot(dashSfx, 1f);
-            StartCoroutine(Dash());
+            Invoke(nameof(Dash), 0.0f);
         }
     }
 
-    public IEnumerator Dash()
+    private void Dash()
     {
         Debug.Log("DASH");
         canDash = false;
         isDashing = true;
         anim.SetBool("isDashing", true);
-        float originalGravity = rb.gravityScale;
+        originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         if (facingRight)
         {
@@ -290,11 +297,19 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(-dashingPower, 0f);
         }
-        yield return new WaitForSeconds(dashingTime);
+        Invoke(nameof(stopDashing), dashingTime);
+        Invoke(nameof(dashCooldownFunction), dashingCooldown);
+        canDash = true;
+    }
+
+    void stopDashing()
+    {
         rb.gravityScale = originalGravity;
         isDashing = false;
         anim.SetBool("isDashing", false);
-        yield return new WaitForSeconds(dashingCooldown);
+    }
+    void dashCooldownFunction()
+    {
         canDash = true;
     }
 
