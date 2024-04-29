@@ -7,8 +7,8 @@ public class enemy_1 : MonoBehaviour
 {
 
     private Animator animator;
-    private bool IsMovingRight = true;
-    private bool IsMovingLeft = false;
+    private bool IsMovingRight = false;
+    private bool IsMovingLeft = true;
     private bool IsShooting = false;
     private bool ShootIsReady = true;
 
@@ -21,7 +21,6 @@ public class enemy_1 : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        shoot();
     }
 
     // Update is called once per frame
