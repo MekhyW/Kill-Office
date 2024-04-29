@@ -217,6 +217,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Explode(Vector2 vec){
+        rb.AddForce(vec);
+    }
+
 
     private void OnCollisionExit2D(Collision2D other)
     {

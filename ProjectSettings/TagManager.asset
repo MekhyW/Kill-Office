@@ -12,6 +12,7 @@ TagManager:
   - Door
   - EnemyWaypointA
   - EnemyWaypointB
+  - Enemy
   layers:
   - Default
   - TransparentFX

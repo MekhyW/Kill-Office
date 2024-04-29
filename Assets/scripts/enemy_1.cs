@@ -15,7 +15,8 @@ public class enemy_1 : MonoBehaviour
     private bool IsDead = false;
     
     
-    public GameObject bullet,my_bullet;
+    public GameObject bullet;
+    private GameObject my_bullet;
     // Start is called before the first frame update
     void Start()
     {
@@ -130,6 +131,10 @@ public class enemy_1 : MonoBehaviour
 
 
     private void OnMouseDown() {
+        die();
+    }
+
+    public void die(){
         animator.SetBool("isDead",true);
         IsDead = true;
         // disable the collider
