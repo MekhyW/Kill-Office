@@ -61,16 +61,21 @@ public class enemy_1 : MonoBehaviour
     {
         Vector2 size = new Vector2(0.5f, 0.5f);
         Vector2 direction = Vector2.right * transform.localScale.x * size.x;
+        Vector2 direction2 = Vector2.up * size.y * 2;
         Vector2 offset = new Vector2(0f, 0.5f);
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + offset, direction, 10f);
-        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position + offset, Vector2.up, 10f);
+        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position + offset, direction2, 10f);
         if (hit.collider != null)
         {
-            print(hit.collider.gameObject.tag);
+            //print(hit.collider.gameObject.tag);
+        }
+        if (hit2.collider != null)
+        {
+            print(hit2.collider.gameObject.tag);
         }
         // draw a line to see the raycast
         Debug.DrawRay((Vector2)transform.position + offset, direction, Color.green);
-        Debug.DrawRay((Vector2)transform.position + offset, Vector2.up, Color.red);
+        Debug.DrawRay((Vector2)transform.position + offset, direction2, Color.red);
         if (hit.collider != null && hit.collider.gameObject.tag == "Player")
         {
             if (ShootIsReady)
@@ -81,11 +86,12 @@ public class enemy_1 : MonoBehaviour
             }
             else
             {
-                print("not ready to shoot");
+                //print("not ready to shoot");
             }
         }
         if (hit2.collider != null && hit2.collider.gameObject.tag == "Player")
         {
+            print("player is above");
             if (IsMovingLeft)
             {
                 transform.localScale = new Vector3(1f, 1f, 1f); // flip the sprite
