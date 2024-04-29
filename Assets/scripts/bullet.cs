@@ -21,7 +21,7 @@ public class bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
+        //this.gameObject.SetActive(false);
     }
 
 
