@@ -7,6 +7,8 @@ public class Barrel : MonoBehaviour
     public GameObject explosionRadius;
     private float radius = 3f;
     private Animator animator;
+    public AudioClip explodeSfx;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,7 @@ public class Barrel : MonoBehaviour
     }
 
     public IEnumerator explode(){
+        audioSource.PlayOneShot(explodeSfx,1f);
         animator.SetBool("explode",true);
         yield return new WaitForSeconds(0.5f);
         gameObject.SetActive(false);
