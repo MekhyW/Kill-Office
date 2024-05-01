@@ -183,7 +183,14 @@ public class enemy_1 : MonoBehaviour
     }
 
     public void stun(){
-        //TODO
+        animator.SetBool("isDead", true);
+        IsDead = true;
+        StartCoroutine(revive());
+    }
+
+    public IEnumerator revive(){
+        yield return new WaitForSeconds(1f);
+        IsDead = false;
     }
 
     public void die()
