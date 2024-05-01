@@ -22,11 +22,6 @@
 - - [ ] Music 
 
 ## Assets
-- [Free 3 Cyberpunk Characters Pixel Art](https://craftpix.net/freebies/free-3-cyberpunk-characters-pixel-art/)
-- [Free Industrial Zone Tileset Pixel Art](https://craftpix.net/freebies/free-industrial-zone-tileset-pixel-art/)
-- [Free Scrolling City Backgrounds Pixel Art](https://craftpix.net/freebies/free-scrolling-city-backgrounds-pixel-art/)
-- [Free Extra Animations for Cyberpunk Characters](https://craftpix.net/freebies/free-extra-animations-for-cyberpunk-characters/)
+- [Sprites] (https://craftpix.net/sets/cyberpunk-platformer-asset-pixel-art/)
 - [A simple set of spikes](https://opengameart.org/content/spikes-32x32)
-
-## Music 
-- Line Noise - Magenta Moon (Part II)
+- [This is a set of shot sounds in Target Xplosion](https://opengameart.org/content/shots)

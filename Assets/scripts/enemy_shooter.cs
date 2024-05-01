@@ -12,6 +12,8 @@ public class enemy_1 : MonoBehaviour
     private bool IsShooting = false;
     private bool ShootIsReady = true;
     [SerializeField] private bool isKillable = true;
+    private AudioSource audioSource;
+    
 
     private bool IsDead = false;
 
@@ -22,6 +24,7 @@ public class enemy_1 : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,6 +52,7 @@ public class enemy_1 : MonoBehaviour
         animator.SetBool("shoot", false);
         IsShooting = false;
         StartCoroutine(delayShoot());
+        audioSource.PlayOneShot(audioSource.clip,0.5f);
     }
 
     public IEnumerator delayShoot()
