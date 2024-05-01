@@ -185,8 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isKillable: 1
-  audioSource: {fileID: 0}
-  shotSfx: {fileID: 0}
   bullet: {fileID: 7497208692986621703, guid: af9adb1afd7fd6645b610e5c60893c75, type: 3}
 --- !u!82 &3579081712495376342
 AudioSource:
@@ -198,7 +196,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4ab3460a352e5b44289f6e08d2cbbaf1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5314167957ef43f44866af8cd8362a84, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
