@@ -11610,6 +11610,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4ab3460a352e5b44289f6e08d2cbbaf1, type: 3}
     - target: {fileID: 5808994468050410402, guid: 999721e38a84c8f45a30f0209a8f3ff6, type: 3}
+      propertyPath: isKillable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808994468050410402, guid: 999721e38a84c8f45a30f0209a8f3ff6, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 523567093}

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1f0b0b86030b8e4fb758138b2edde45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKillable: 1
+  isKillable: 0
   bullet: {fileID: 7497208692986621703, guid: af9adb1afd7fd6645b610e5c60893c75, type: 3}
 --- !u!50 &2703163024773273278
 Rigidbody2D:

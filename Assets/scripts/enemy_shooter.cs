@@ -189,8 +189,9 @@ public class enemy_1 : MonoBehaviour
     }
 
     public IEnumerator revive(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         IsDead = false;
+        animator.SetBool("isDead", false);
     }
 
     public void die()
