@@ -11,6 +11,7 @@ public class enemy_1 : MonoBehaviour
     private bool IsMovingLeft = true;
     private bool IsShooting = false;
     private bool ShootIsReady = true;
+    [SerializeField] private bool isKillable = true;
 
     private bool IsDead = false;
 
@@ -168,7 +169,17 @@ public class enemy_1 : MonoBehaviour
 
     private void OnMouseDown()
     {
-        die();
+        if (isKillable)
+        {
+            die();
+        }
+        else {
+            stun();
+        }
+    }
+
+    public void stun(){
+        //TODO
     }
 
     public void die()
