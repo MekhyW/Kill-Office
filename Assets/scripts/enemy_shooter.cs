@@ -13,6 +13,8 @@ public class enemy_1 : MonoBehaviour
     private bool ShootIsReady = true;
     [SerializeField] private bool isKillable = true;
     private AudioSource audioSource;
+    private CapsuleCollider2D collider;
+    private Rigidbody2D rb;
     
 
     private bool IsDead = false;
@@ -25,6 +27,8 @@ public class enemy_1 : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        collider = GetComponent<CapsuleCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -185,6 +189,8 @@ public class enemy_1 : MonoBehaviour
     public void stun(){
         animator.SetBool("isDead", true);
         IsDead = true;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
         StartCoroutine(revive());
     }
 
@@ -192,6 +198,8 @@ public class enemy_1 : MonoBehaviour
         yield return new WaitForSeconds(3f);
         IsDead = false;
         animator.SetBool("isDead", false);
+        collider.enabled = true;
+        rb.simulated = true;
     }
 
     public void die()
@@ -199,9 +207,9 @@ public class enemy_1 : MonoBehaviour
         animator.SetBool("isDead", true);
         IsDead = true;
         // disable the collider
-        GetComponent<CapsuleCollider2D>().enabled = false;
+        collider.enabled = false;
         // disable the rigidbody
-        GetComponent<Rigidbody2D>().simulated = false;
+        rb.simulated = false;
 
     }
 }
