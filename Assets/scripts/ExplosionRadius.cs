@@ -11,7 +11,7 @@ public class ExplosionRadius : MonoBehaviour
 
     private IEnumerator DestroyAfterDelay(){
         yield return new WaitForSeconds(0.3f);
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

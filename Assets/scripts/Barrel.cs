@@ -8,6 +8,7 @@ public class Barrel : MonoBehaviour
     private float radius = 3f;
     private Animator animator;
     private AudioSource audioSource;
+    public GameObject barrelPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class Barrel : MonoBehaviour
         audioSource.PlayOneShot(audioSource.clip,1f);
         animator.SetBool("explode",true);
         yield return new WaitForSeconds(0.5f);
-        gameObject.SetActive(false);
+        animator.SetBool("explode",false);
+        //gameObject.SetActive(false);
     }
 }

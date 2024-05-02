@@ -289,8 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionRadius: {fileID: 1742791259075058474}
-  explodeSfx: {fileID: 8300000, guid: 46b45f13fb5b2b54f978b54ea6643ad4, type: 3}
-  audioSource: {fileID: 0}
+  barrelPrefab: {fileID: 3239709448945500442}
 --- !u!61 &8692733023957992832
 BoxCollider2D:
   m_ObjectHideFlags: 0
