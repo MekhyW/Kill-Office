@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private bool canDash = true;
     private bool isDashing;
     private float dashingTime = 0.3f;
-    private float dashingCooldown = 0.3f;
+    private float dashingCooldown = 0.45f;
     private float dashingPower = 15f;
     private bool isWalled = false;
     private bool isWallSliding = false;
@@ -278,8 +278,9 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash()
     {
-        if (canDash || !isDead)
+        if (canDash && !isDead)
         {
+            print(canDash);
             audioSource.PlayOneShot(dashSfx, 1f);
             Invoke(nameof(Dash), 0.0f);
         }
@@ -287,7 +288,7 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
-        Debug.Log("DASH");
+        //Debug.Log("DASH");
         canDash = false;
         isDashing = true;
         anim.SetBool("isDashing", true);
@@ -303,7 +304,6 @@ public class PlayerController : MonoBehaviour
         }
         Invoke(nameof(stopDashing), dashingTime);
         Invoke(nameof(dashCooldownFunction), dashingCooldown);
-        canDash = true;
     }
 
     void stopDashing()
