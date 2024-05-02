@@ -15,7 +15,9 @@ public class enemy_shooter : MonoBehaviour
     private AudioSource audioSource;
     private CapsuleCollider2D collider;
     private Rigidbody2D rb;
-    
+    [SerializeField] private bool isShootable = true;
+    public AudioClip metalSfx;
+
 
     private bool IsDead = false;
 
@@ -56,7 +58,7 @@ public class enemy_shooter : MonoBehaviour
         animator.SetBool("shoot", false);
         IsShooting = false;
         StartCoroutine(delayShoot());
-        audioSource.PlayOneShot(audioSource.clip,0.5f);
+        audioSource.PlayOneShot(audioSource.clip, 0.5f);
     }
 
     public IEnumerator delayShoot()
@@ -177,16 +179,24 @@ public class enemy_shooter : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (isKillable)
+        if (isShootable)
         {
-            die();
+            if (isKillable)
+            {
+                die();
+            }
+            else
+            {
+                stun();
+            }
         }
-        else {
-            stun();
+        else{
+            audioSource.PlayOneShot(metalSfx,1.5f);
         }
     }
 
-    public void stun(){
+    public void stun()
+    {
         animator.SetBool("isDead", true);
         IsDead = true;
         GetComponent<CapsuleCollider2D>().enabled = false;
@@ -194,7 +204,8 @@ public class enemy_shooter : MonoBehaviour
         StartCoroutine(revive());
     }
 
-    public IEnumerator revive(){
+    public IEnumerator revive()
+    {
         yield return new WaitForSeconds(3f);
         IsDead = false;
         animator.SetBool("isDead", false);
