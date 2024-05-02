@@ -187,6 +187,9 @@ MonoBehaviour:
   isKillable: 1
   isShootable: 1
   metalSfx: {fileID: 0}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4
   bullet: {fileID: 7497208692986621703, guid: af9adb1afd7fd6645b610e5c60893c75, type: 3}
 --- !u!82 &3579081712495376342
 AudioSource:

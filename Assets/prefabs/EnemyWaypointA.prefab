@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7708652605602140344}
   - component: {fileID: 4221670890039453381}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyWaypointA
   m_TagString: EnemyWaypointA
   m_Icon: {fileID: 0}

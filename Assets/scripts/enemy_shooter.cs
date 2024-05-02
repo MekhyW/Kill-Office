@@ -20,6 +20,7 @@ public class enemy_shooter : MonoBehaviour
 
 
     private bool IsDead = false;
+    public LayerMask ignoreLayer;
 
 
     public GameObject bullet;
@@ -27,6 +28,7 @@ public class enemy_shooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ignoreLayer = LayerMask.NameToLayer("Ignore Raycast");
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         collider = GetComponent<CapsuleCollider2D>();
@@ -74,8 +76,8 @@ public class enemy_shooter : MonoBehaviour
         Vector2 direction = Vector2.right * transform.localScale.x * size.x;
         Vector2 direction2 = Vector2.up * size.y * 2;
         Vector2 offset = new Vector2(0f, 0.5f);
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + offset, direction, 10f);
-        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position + offset, direction2, 10f);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + offset, direction, 10f, ~ignoreLayer);
+        RaycastHit2D hit2 = Physics2D.Raycast((Vector2)transform.position + offset, direction2, 10f, ~ignoreLayer);
         if (hit.collider != null)
         {
             //print(hit.collider.gameObject.tag);

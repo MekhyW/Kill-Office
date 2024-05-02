@@ -104,6 +104,9 @@ MonoBehaviour:
   isKillable: 0
   isShootable: 1
   metalSfx: {fileID: 0}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 4
   bullet: {fileID: 7497208692986621703, guid: af9adb1afd7fd6645b610e5c60893c75, type: 3}
 --- !u!50 &2703163024773273278
 Rigidbody2D:
