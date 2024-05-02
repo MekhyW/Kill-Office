@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -103.9, y: -106.38}
+  m_AnchoredPosition: {x: -142, y: -106.38}
   m_SizeDelta: {x: 154.86, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248925503
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Kill Office
+  m_text: Thanks for playing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fab0d537ffb069246b167260a8650308, type: 2}
   m_sharedMaterial: {fileID: 3042631432893621135, guid: fab0d537ffb069246b167260a8650308, type: 2}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.65
+  m_fontSize: 36.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -209.58044, w: -29.647919}
+  m_margin: {x: 0, y: 0, z: -298.92322, w: -29.647919}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: REStart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7ef2f660678f484186c82698c2d2fec, type: 2}
   m_sharedMaterial: {fileID: 619596957212698803, guid: c7ef2f660678f484186c82698c2d2fec, type: 2}
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5929c5df5bf9249b2517b3d1813fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_level: industrial_level
+  next_level: main_menu
 --- !u!1 &1577920677
 GameObject:
   m_ObjectHideFlags: 0
