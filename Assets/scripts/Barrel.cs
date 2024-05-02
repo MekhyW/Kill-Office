@@ -20,12 +20,11 @@ public class Barrel : MonoBehaviour
 
     void OnMouseDown()
     {
-        explosionRadius.SetActive(true);
         StartCoroutine(explode());
-        
     }
 
     public IEnumerator explode(){
+        explosionRadius.SetActive(true);
         audioSource.PlayOneShot(audioSource.clip,1f);
         animator.SetBool("explode",true);
         yield return new WaitForSeconds(0.5f);

@@ -23,7 +23,7 @@ public class groundCheck : MonoBehaviour
     }
 
     void OnCollisionStay2D(Collision2D other){
-        if (other.gameObject.CompareTag("Ground")){
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Barrel")){
             isGrounded = true;
         }
     }

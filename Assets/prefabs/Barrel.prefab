@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 6131484441797640496}
   m_Layer: 0
   m_Name: Barrel2
-  m_TagString: Ground
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

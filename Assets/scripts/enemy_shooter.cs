@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class enemy_1 : MonoBehaviour
+public class enemy_shooter : MonoBehaviour
 {
 
     private Animator animator;
@@ -80,7 +80,7 @@ public class enemy_1 : MonoBehaviour
         }
         if (hit2.collider != null)
         {
-            print(hit2.collider.gameObject.tag);
+            //print(hit2.collider.gameObject.tag);
         }
         // draw a line to see the raycast
         Debug.DrawRay((Vector2)transform.position + offset, direction, Color.green);
@@ -100,7 +100,7 @@ public class enemy_1 : MonoBehaviour
         }
         if (hit2.collider != null && hit2.collider.gameObject.tag == "Player")
         {
-            print("player is above");
+            //print("player is above");
             if (IsMovingLeft)
             {
                 transform.localScale = new Vector3(1f, 1f, 1f); // flip the sprite

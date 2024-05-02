@@ -16,14 +16,19 @@ public class ExplosionRadius : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+        print(collider.gameObject.tag);
         if (collider.gameObject.CompareTag("Enemy"))
         {
-            collider.gameObject.GetComponent<enemy_1>().die();
+            collider.gameObject.GetComponent<enemy_shooter>().die();
         }
 
         if (collider.gameObject.CompareTag("Player")){
             Vector3 diff = collider.gameObject.transform.position - transform.position;
             collider.gameObject.GetComponent<PlayerController>().Explode(diff.normalized*700);
+        }
+        if (collider.gameObject.CompareTag("Barrel")){
+            Debug.Log("CHAIN REACTION");
+            collider.gameObject.GetComponent<Barrel>().explode();
         }
     }
 
