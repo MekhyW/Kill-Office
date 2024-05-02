@@ -29,7 +29,17 @@ public class Barrel : MonoBehaviour
         audioSource.PlayOneShot(audioSource.clip,1f);
         animator.SetBool("explode",true);
         yield return new WaitForSeconds(0.5f);
-        animator.SetBool("explode",false);
         //gameObject.SetActive(false);
+        invokeRespawn();
+    }
+
+    private void invokeRespawn(){
+        Invoke("respawn",2f);
+    }
+
+    private void respawn(){
+        print("Respawning");
+        //gameObject.SetActive(true);
+        animator.SetBool("explode",false);
     }
 }
