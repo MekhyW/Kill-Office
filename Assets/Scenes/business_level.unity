@@ -532,7 +532,7 @@ MonoBehaviour:
   checkpoints:
   - {x: 0, y: 0}
   - {x: 40, y: 2}
-  next_level: residential_level
+  next_level: end_menu
   player: {fileID: 442600634}
 --- !u!4 &525628835
 Transform:
