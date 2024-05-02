@@ -1093,7 +1093,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1790,8 +1790,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoints:
-  - {x: 0, y: 0}
-  - {x: 40, y: 2}
+  - {x: 0, y: -4}
+  - {x: 40, y: -3}
+  - {x: 62.5, y: -4}
+  - {x: 115.5, y: 2.5}
   next_level: end_menu
   player: {fileID: 442600634}
 --- !u!4 &525628835
