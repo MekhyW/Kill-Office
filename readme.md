@@ -30,3 +30,4 @@
 - [Crosshairs](https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-25-free-crosshairs-pack-216732)
 - [8-bit sound effects](https://assetstore.unity.com/packages/audio/sound-fx/8-bit-style-sound-effects-68228)
 - [Footsteps](https://assetstore.unity.com/packages/audio/sound-fx/foley/footsteps-essentials-189879)
+- [Onscreen controls](https://opengameart.org/content/onscreen-controls-8-styles)
