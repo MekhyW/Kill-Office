@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75adf5ee0d20ac4ca17dc460b8490eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_placementKey: pk_1e3adec986b0434eb7ca7dc9d736154b
+  m_placementKey: pk_eef9bb3b169f490a9bbabf808d4e3ed0
   m_hideUntilReady: 0
   m_camera: {fileID: 0}
   m_disablePlaceholder: 0
@@ -672,8 +672,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114856978042605658, guid: c302fe662f86f1544928c52070704516, type: 3}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 563456848}
+    - target: {fileID: 114856978042605658, guid: c302fe662f86f1544928c52070704516, type: 3}
       propertyPath: m_gameKey
-      value: gk_52c971682f3345cb96c084a04cf0ff4f
+      value: gk_727c6d0b2ef147d984343e40f62f7721
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856978042605658, guid: c302fe662f86f1544928c52070704516, type: 3}
+      propertyPath: showAdvancedDebug
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
