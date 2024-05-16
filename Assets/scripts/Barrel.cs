@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Barrel : MonoBehaviour
@@ -9,6 +10,7 @@ public class Barrel : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     public GameObject barrelPrefab;
+    private bool waiting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,16 @@ public class Barrel : MonoBehaviour
     void OnMouseDown()
     {
         StartCoroutine(explode());
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && !waiting)
+        {
+            print("Player collided with barrel");
+            StartCoroutine(explode());
+            waiting = true;
+        }
     }
 
     public IEnumerator explode(){
@@ -46,6 +58,7 @@ public class Barrel : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
         animator.SetBool("explode",false);
+        waiting = false;
         // retorna o objeto para o estado inicial
 
     }
