@@ -24,7 +24,7 @@ public class ExplosionRadius : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Player")){
             Vector3 diff = collider.gameObject.transform.position - transform.position;
-            collider.gameObject.GetComponent<PlayerController>().Explode(diff.normalized*700);
+            collider.gameObject.GetComponent<PlayerController>().Explode(diff.normalized*1000);
         }
         if (collider.gameObject.CompareTag("Barrel")){
             Debug.Log("CHAIN REACTION");

@@ -218,6 +218,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Explode(Vector2 vec){
+        rb.velocity = new Vector2(0f,0f);
+        rb.AddForce(Vector2.up * jumpForce * 3, ForceMode2D.Impulse);
         rb.AddForce(vec);
     }
 
