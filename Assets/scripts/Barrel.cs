@@ -30,6 +30,7 @@ public class Barrel : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !waiting)
         {
             print("Player collided with barrel");
+            explosionRadius.GetComponent<ExplosionRadius>().isJump=true;
             StartCoroutine(explode());
             waiting = true;
         }
@@ -43,6 +44,7 @@ public class Barrel : MonoBehaviour
         // make the object invisible
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         invokeRespawn();
     }
@@ -56,6 +58,7 @@ public class Barrel : MonoBehaviour
         //gameObject.SetActive(true);
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         animator.SetBool("explode",false);
         waiting = false;
         // retorna o objeto para o estado inicial

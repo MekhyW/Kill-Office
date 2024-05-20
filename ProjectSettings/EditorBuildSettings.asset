@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/residential_level.unity
     guid: 360827ed404fd6c4aa6f666ac03642f3
+  - enabled: 1
+    path: Assets/Scenes/end_menu.unity
+    guid: 3ddc47c63c3f3c64c9e9f611b477000d
   m_configObjects: {}

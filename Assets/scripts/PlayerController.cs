@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private float speed = 10.0f;
     private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
-    private float jumpForce = 14.0f;
+    private float jumpForce = 16.0f;
     private float jumpCutMultiplier = 0.9f;
     private float wallJumpBounce = 12.0f;
     private bool isGrounded;
@@ -218,9 +218,15 @@ public class PlayerController : MonoBehaviour
     }
 
     public void Explode(Vector2 vec){
-        rb.velocity = new Vector2(0f,0f);
-        rb.AddForce(Vector2.up * jumpForce * 3, ForceMode2D.Impulse);
+        /* rb.velocity = new Vector2(0f,0f);
+        rb.AddForce(Vector2.up * jumpForce * 3, ForceMode2D.Impulse); */
         rb.AddForce(vec);
+    }
+
+    public void ExplodeOnJump(Vector2 vec){
+        rb.velocity = new Vector2(0f,0f);
+        rb.AddForce(Vector2.up * jumpForce * 20, ForceMode2D.Impulse);
+        //rb.AddForce(vec);
     }
 
 

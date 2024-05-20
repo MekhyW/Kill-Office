@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ExplosionRadius : MonoBehaviour
 {
+
+    public bool isJump = false;
+
     void OnEnable(){
         Debug.Log("Comecou");
         StartCoroutine(DestroyAfterDelay());
@@ -24,7 +27,15 @@ public class ExplosionRadius : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Player")){
             Vector3 diff = collider.gameObject.transform.position - transform.position;
-            collider.gameObject.GetComponent<PlayerController>().Explode(diff.normalized*1000);
+            if (isJump){
+                collider.gameObject.GetComponent<PlayerController>().ExplodeOnJump(diff.normalized*1000);
+                isJump = false;
+                print("ISJUMP");
+            }
+            else{
+                collider.gameObject.GetComponent<PlayerController>().Explode(diff.normalized*1000);
+                print("ISNOTJUMP");
+            }
         }
         if (collider.gameObject.CompareTag("Barrel")){
             Debug.Log("CHAIN REACTION");
