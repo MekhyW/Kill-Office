@@ -8,7 +8,7 @@ using static MBT.Blackboard;
 public class BossLogic : MonoBehaviour
 {
     private Animator animator;
-    private CapsuleCollider2D collider;
+    private BoxCollider2D collider;
     private Rigidbody2D rb;
     private AudioSource audioSource;
 
@@ -33,12 +33,13 @@ public class BossLogic : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        collider = GetComponent<CapsuleCollider2D>();
+        collider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
 
 
         
     }
+
 
         private void OnMouseDown()
     {

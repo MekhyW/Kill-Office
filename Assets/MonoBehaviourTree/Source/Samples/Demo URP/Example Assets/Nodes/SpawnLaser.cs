@@ -12,7 +12,9 @@ namespace MBTExample
     {
         public FloatReference coord_x;
         public GameObjectReference prefabToSpawn;
-        private float speed = 5.0f;
+        public GameObjectReference player;
+
+        private float speed = 10.0f;
         private Vector3 newPosition;
 
         public override NodeResult Execute()
@@ -20,8 +22,9 @@ namespace MBTExample
             if (prefabToSpawn.Value != null)
             {
                 Transform prefabTransform = prefabToSpawn.Value.transform;
+                Transform playerTransform = player.Value.transform;
                 // Corrigir a criação do Vector3 com valores float apropriados
-                newPosition = new Vector3(coord_x.Value, prefabTransform.position.y, prefabTransform.position.z);
+                newPosition = new Vector3(playerTransform.position.x, 6, prefabTransform.position.z);
                 
                 // Aplicar a nova posição (se necessário)
                 prefabTransform.position = newPosition;

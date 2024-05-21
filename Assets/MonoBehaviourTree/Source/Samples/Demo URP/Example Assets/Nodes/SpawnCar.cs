@@ -11,7 +11,7 @@ namespace MBTExample
     {
         public GameObjectReference prefabToSpawn;
         // private Vector3Reference spawnPosition;
-        public float speed = 1.0f;
+        public float speed = 5.0f;
 
 
         public override NodeResult Execute()

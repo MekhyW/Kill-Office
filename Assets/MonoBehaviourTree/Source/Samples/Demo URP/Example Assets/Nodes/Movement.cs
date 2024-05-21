@@ -20,7 +20,7 @@ public class ConstantMovement : MonoBehaviour
 
     private IEnumerator WaitAndMove()
     {
-        yield return new WaitForSeconds(1.0f); // Espera 1 segundo
+        yield return new WaitForSeconds(0.5f); // Espera 1 segundo
         shouldMove = true;
     }
 
