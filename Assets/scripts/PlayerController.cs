@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     public GameObject manager;
     public PlayerInputActions playerControls;
     private float originalGravity;
+    private Vector2 last_velocity = new Vector2(0f, 0f);
     // Start is called before the first frame update
 
     private void Awake()
@@ -91,6 +92,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the current velocity is different from the last velocity, print the current velocity, ignores decimals
+        // if (Mathf.Round(rb.velocity.y) != Mathf.Round(last_velocity.y))
+        // {
+        //     print(rb.velocity.y);
+        // }
+        // last_velocity = rb.velocity;
+
+
         if (isDead)
         {
             return;
@@ -137,10 +146,10 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
 
-        if (!isGrounded && jump.ReadValue<float>() == 0 && rb.velocity.y > 0)
-        { // jump while not holding button
-            rb.AddForce(Vector2.down * rb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
-        }
+        // if (!isGrounded && jump.ReadValue<float>() == 0 && rb.velocity.y > 0)
+        // { // jump while not holding button
+        //     // rb.AddForce(Vector2.down * rb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
+        // }
 
         WallSlide();
 
@@ -180,6 +189,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             audioSource.PlayOneShot(jumpSfx, 0.7f);
+            //print("JUMP");
         }
     }
 
@@ -187,6 +197,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isWalled && !isGrounded && movement.ReadValue<float>() != 0f)
         {
+            print("WALLSLIDING");
             isWallSliding = true;
             anim.SetBool("isWallSliding", true);
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
@@ -225,8 +236,9 @@ public class PlayerController : MonoBehaviour
 
     public void ExplodeOnJump(Vector2 vec){
         rb.velocity = new Vector2(0f,0f);
-        rb.AddForce(Vector2.up * jumpForce * 20, ForceMode2D.Impulse);
-        //rb.AddForce(vec);
+        print(rb.velocity);
+        rb.AddForce(Vector2.up * jumpForce * 2, ForceMode2D.Impulse);
+        print(rb.velocity);
     }
 
 
