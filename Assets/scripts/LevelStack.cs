@@ -9,9 +9,9 @@ public class LevelStack : MonoBehaviour
     public int levels_before_boss = 5;
     public Stack<string> levelstack = new Stack<string>();
     private List<string> levels = new List<string> { 
-        "Level1", "Level2", "Level3", "Level4", "Level5", "Level6", "Level7", "Level8", "Level9", "Level10" 
+        "snake_barrels", "snake_enemies", "snake_enemies2", "snake_spikes", "the_pit", "the_pit_barrels", "the_pit_enemies", "the_pit_hard", "the_pit_platform", "the_pit_walls", "easy_level_1", "easy_level_2", "easy_level_3", "easy_level_4", "easy_level_5" 
     };
-    private string bosslevel = "BossLevel";
+    private string bosslevel = "boss_scene";
 
     private void Awake()
     {
@@ -54,6 +54,7 @@ public class LevelStack : MonoBehaviour
         }
         print("Level " + levelstack.Peek());
         SceneManager.LoadScene(levelstack.Peek());
+        print("Level " + levelstack.Peek() + " Loaded");
         return levelstack.Pop();
     }
 }

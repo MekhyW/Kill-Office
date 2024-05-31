@@ -10,7 +10,7 @@ public class Manager : MonoBehaviour
     static private int checkpointIndex;
     [SerializeField] private string next_level;
     public GameObject player;
-
+    public GameObject levelstack;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +43,6 @@ public class Manager : MonoBehaviour
 
     public string getNextLevel()
     {
-        return next_level;
+        return levelstack.gameObject.GetComponent<LevelStack>().LoadNextLevel();
     }
 }

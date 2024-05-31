@@ -23,4 +23,52 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/end_menu.unity
     guid: 3ddc47c63c3f3c64c9e9f611b477000d
+  - enabled: 1
+    path: Assets/Scenes/hub_scene.unity
+    guid: 2026a12622f29f249b04e3b78d758a81
+  - enabled: 1
+    path: Assets/Scenes/snake_barrels.unity
+    guid: 11d2cd6aff5615e4eaca6341f41013c0
+  - enabled: 1
+    path: Assets/Scenes/snake_enemies2.unity
+    guid: ba6e8ad54786c664d9c9c0d92ca74638
+  - enabled: 1
+    path: Assets/Scenes/snake_enemies.unity
+    guid: eab6a3c3823da0141b595d28af2bb58b
+  - enabled: 1
+    path: Assets/Scenes/snake_spikes.unity
+    guid: aa28eefa0eac9614cb474d48d2499cde
+  - enabled: 1
+    path: Assets/Scenes/the_pit.unity
+    guid: 309e17adc205b01468e060e5c5bbe854
+  - enabled: 1
+    path: Assets/Scenes/the_pit_barrels.unity
+    guid: 6506a8570157fcd4eb1db8c4cf4ad0ac
+  - enabled: 1
+    path: Assets/Scenes/the_pit_enemies.unity
+    guid: d2efa18be564c7c4ca886490867b50de
+  - enabled: 1
+    path: Assets/Scenes/the_pit_hard.unity
+    guid: 7b0e4bcb76bad5749accfacc2aae201e
+  - enabled: 1
+    path: Assets/Scenes/the_pit_platform.unity
+    guid: 280722489cf031544a1a8343ae250910
+  - enabled: 1
+    path: Assets/Scenes/the_pit_walls.unity
+    guid: 61582e3b0b40dce49b0f4f0c5b96deb4
+  - enabled: 1
+    path: Assets/Scenes/easy_level_1.unity
+    guid: 457ee338c733dff489ce6096614f060a
+  - enabled: 1
+    path: Assets/Scenes/easy_level_2.unity
+    guid: 6a42f3178f2ebd04899f56b368664d7e
+  - enabled: 1
+    path: Assets/Scenes/easy_level_3.unity
+    guid: 64f70567db8a2b4469b37b3b3b22caa4
+  - enabled: 1
+    path: Assets/Scenes/easy_level_4.unity
+    guid: fb4fc3a12f1c7a74bbdc216d5f82053d
+  - enabled: 1
+    path: Assets/Scenes/easy_level_5.unity
+    guid: e59fda00d3a727347b1f868626013729
   m_configObjects: {}
