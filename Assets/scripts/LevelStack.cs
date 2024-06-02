@@ -45,10 +45,12 @@ public class LevelStack : MonoBehaviour
 
     public string LoadNextLevel()
     {
-        if (levelstack.Count == 0)
+        levels_before_boss--;
+        if (levels_before_boss == 0)
         {
-            PrepareLevels();
+            //PrepareLevels();
             print("Boss Level");
+            levels_before_boss = 5;
             SceneManager.LoadScene(bosslevel);
             return bosslevel;
         }
