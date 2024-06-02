@@ -35,7 +35,7 @@ public class LevelStack : MonoBehaviour
         }
         for (int i = 0; i < levelstack.Count; i++)
         {
-            int r = Random.Range(0, levelstack.Count);
+            int r = Random.Range(0, levelstack.Count-1);
             string temp = levelstack.Pop();
             levelstack.Push(levelstack.ToArray()[r]);
             levelstack.Pop();
