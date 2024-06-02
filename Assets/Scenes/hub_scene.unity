@@ -3842,7 +3842,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1978163206017507107, guid: dc4e7e8ce0985cf419b74376e8c797cb, type: 3}
       propertyPath: levels_before_boss
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2584352725381445036, guid: dc4e7e8ce0985cf419b74376e8c797cb, type: 3}
       propertyPath: m_Name

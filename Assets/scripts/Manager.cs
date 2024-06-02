@@ -35,8 +35,12 @@ public class Manager : MonoBehaviour
 
         
         player.gameObject.GetComponent<PlayerController>().revive();
-        player.transform.position = new Vector3(currentCheckpoint.x,currentCheckpoint.y+1,0);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+       // player.transform.position = new Vector3(currentCheckpoint.x,currentCheckpoint.y+1,0);
+        GameObject levelStack = GameObject.FindWithTag("LevelStack");
+        LevelStack levelStackComponent = levelStack.GetComponent<LevelStack>();
+        // load the hub scene
+        SceneManager.LoadScene(levelStackComponent.LoadHub());
+
         
     }
 
