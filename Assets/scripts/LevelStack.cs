@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelStack : MonoBehaviour
 {
     public static LevelStack instance;
+    public int n_levels = 0;
     public int levels_before_boss = 5;
     public Stack<string> levelstack = new Stack<string>();
     private List<string> levels = new List<string> { 
@@ -32,8 +33,10 @@ public class LevelStack : MonoBehaviour
     public void PrepareLevels()
     {
         levelstack.Clear();
+        n_levels = 0;
         foreach (string l in levels)
         {
+            n_levels++;
             levelstack.Push(l);
         }
         // randomize the level order
@@ -58,13 +61,20 @@ public class LevelStack : MonoBehaviour
     public string LoadNextLevel()
     {
         levels_before_boss--;
+        n_levels--;
         if (levels_before_boss == 0)
         {
-            //PrepareLevels();
+            
             print("Boss Level");
             levels_before_boss = 5;
             SceneManager.LoadScene(bosslevel);
+            PrepareLevels();
             return bosslevel;
+        }
+
+        if (n_levels == 0)
+        {
+            PrepareLevels();
         }
         print("Level " + levelstack.Peek());
         SceneManager.LoadScene(levelstack.Peek());
