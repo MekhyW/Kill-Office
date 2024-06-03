@@ -39,6 +39,11 @@ public class Manager : MonoBehaviour
         GameObject levelStack = GameObject.FindWithTag("LevelStack");
         LevelStack levelStackComponent = levelStack.GetComponent<LevelStack>();
         // load the hub scene
+        //print Score and HighScore
+        int score = PlayerPrefs.GetInt("Score");
+        int highScore = PlayerPrefs.GetInt("HighScore");
+        print ("HighScore: " + highScore);
+        PlayerPrefs.SetInt("Score", 0);
         SceneManager.LoadScene(levelStackComponent.LoadHub());
 
         

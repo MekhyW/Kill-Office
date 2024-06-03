@@ -7,6 +7,7 @@ public class LevelStack : MonoBehaviour
 {
     public static LevelStack instance;
     public int n_levels = 0;
+    private int score = 0;
     public int levels_before_boss = 5;
     public Stack<string> levelstack = new Stack<string>();
     private List<string> levels = new List<string> { 
@@ -27,6 +28,8 @@ public class LevelStack : MonoBehaviour
         }
         instance = this;
         PrepareLevels();
+        score = 0;
+        PlayerPrefs.SetInt("Score", score);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -62,6 +65,10 @@ public class LevelStack : MonoBehaviour
     {
         levels_before_boss--;
         n_levels--;
+        score = PlayerPrefs.GetInt("Score");
+        score++;
+        PlayerPrefs.SetInt("Score", score);
+        print("Score: " + score);
         if (levels_before_boss == 0)
         {
             

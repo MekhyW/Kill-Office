@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerControls;
     private float originalGravity;
     private Vector2 last_velocity = new Vector2(0f, 0f);
+
+    private int score = 0;
     // Start is called before the first frame update
 
     private void Awake()
@@ -390,13 +392,19 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             anim.SetBool("isDead", true);
+            score = PlayerPrefs.GetInt("Score");
+            if (score > PlayerPrefs.GetInt("HighScore"))
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+            }
+            PlayerPrefs.SetInt("Score", 0);
+            loseTextObject.SetActive(true);
             StartCoroutine(OnDeath());
         }
     }
 
     public IEnumerator OnDeath()
     {
-        loseTextObject.SetActive(true);
         audioSource.PlayOneShot(gameOverSfx, 0.7f);
         //play sfx
         yield return new WaitForSeconds(2f);
