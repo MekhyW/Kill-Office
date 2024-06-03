@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/behaviorTree/editor/BehaviourTreeEditor.uss?fileID=7433441132597879392&amp;guid=b3f47cd058c94af4aa35b682796ac597&amp;type=3#BehaviourTreeEditor" />
+    <BehaviourTreeView style="flex-grow: 1;" />
+</ui:UXML>
