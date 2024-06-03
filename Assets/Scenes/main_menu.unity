@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b5929c5df5bf9249b2517b3d1813fed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next_level: industrial_level
+  next_level: hub_scene
 --- !u!1 &1577920677
 GameObject:
   m_ObjectHideFlags: 0
