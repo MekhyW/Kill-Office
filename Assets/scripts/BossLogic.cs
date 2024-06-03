@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using static MBT.Blackboard;
+using UnityEngine.SceneManagement;
 
 
 public class BossLogic : MonoBehaviour
@@ -80,7 +81,19 @@ public class BossLogic : MonoBehaviour
         collider.enabled = false;
         // disable the rigidbody
         rb.simulated = false;
+        // call passthelevel after 3 seconds
+        Invoke("PassTheLevel", 3f);
 
+    }
+
+    public void PassTheLevel()
+    {
+        // find the object with the tag "LevelStack"
+        GameObject levelStack = GameObject.FindWithTag("LevelStack");
+        // get the LevelStack component from the object
+        LevelStack levelStackComponent = levelStack.GetComponent<LevelStack>();
+        // call the LoadNextLevel method from the LevelStack component
+        SceneManager.LoadScene(levelStackComponent.LoadNextLevel());
     }
 
         public void dmg()
