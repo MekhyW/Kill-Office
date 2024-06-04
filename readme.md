@@ -2,6 +2,7 @@
 ## Integrantes:
 - Eric Possato
 - Felipe Catapano
+- Lincoln Rodrigo
 - Pedro Barão
 - Rodrigo Patelli
 
